@@ -30,11 +30,12 @@
   .hero .count{margin-left:18px;color:#d9d5ca}
   .build{background:#fff3cd;color:var(--ink);padding:12px 16px;margin:0 0 24px;max-width:680px}
   section.team{padding:72px 0 24px}
-  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:20px}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,440px),1fr));gap:20px}
   .card{background:var(--paper);border:1px solid var(--line);padding:26px;display:flex;flex-direction:column}
   .card .head{display:flex;gap:18px;align-items:center;margin-bottom:14px}
   .ph{width:96px;height:96px;border-radius:50%;object-fit:cover;object-position:50% 20%;flex:none;border:3px solid #eadfd0;background:#eadfd0;
       display:flex;align-items:center;justify-content:center;font:700 38px/1 "Noto Serif TC",serif;color:var(--red)}
+  .ph.poster{display:block;width:calc(100% + 52px);height:auto;aspect-ratio:3/2;margin:-26px -26px 18px;border-radius:0;border:0;object-fit:cover;object-position:50% 0}
   .role{display:inline-block;padding:0 12px;border:1px solid var(--red);color:var(--red);font-weight:600;margin-bottom:6px}
   .card h3{font-size:28px}.ct{color:var(--muted);margin:2px 0 0}
   .bio{white-space:pre-line;margin:0}
@@ -89,7 +90,7 @@
   function card(p){
     var c=el('article','card'+(p.filled?'':' seat'));
     var head=el('div','head'),box=el('div');
-    head.appendChild(photo(p));
+    if(p.photo){var po=photo(p);po.className='ph poster';c.appendChild(po);}else head.appendChild(photo(p));
     if(p.role)box.appendChild(el('span','role',p.role));
     box.appendChild(el('h3',null,p.name));
     if(p.title)box.appendChild(el('p','ct',p.title));
